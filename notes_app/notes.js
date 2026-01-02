@@ -20,6 +20,9 @@ const addNote = (title ,description) => {
         note.title === title
      )
 
+
+     debugger
+
      if(duplicateNotes.length === 0 ){
 
         notes.push({
