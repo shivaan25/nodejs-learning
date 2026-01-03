@@ -2,11 +2,37 @@ const request = require('request')
 const chalk = require('chalk')
 
 
-const url ='https://api.weatherstack.com/current?access_key=09a3e384cd5aff612f6efd839382b7c3&query=New%20York&units=f'
+const weather_url ='https://api.weatherstack.com/current'
 
-request({ url: url , json: true} , (error , response) => {
-    console.log(response.body.current.weather_descriptions[0] + " .Current Temperature in " + response.body.request.query + " is " + response.body.current.temperature + " and chances of getting rain is " + response.body.current.precip + "%")
-})
+
+request({
+    url: weather_url,
+    qs:{
+        access_key:'09a3e384cd5aff612f6efd839382b7c3',
+        query:'Haryana',
+        units:''
+    },
+    json:true 
+
+    },(error,response) =>{
+        if(error){
+            console.log('Unable to connect With Weather API')
+        }
+        if(response.body.success === 'false'){
+            console.log('Error Code:' + response.body.error.code )
+            console.log('Impotant Note ' + chalk.red(response.body.error.info))
+        }
+        console.log(response.body.current.weather_descriptions[0] +
+             " .Current Temperature in " + response.body.request.query + 
+             " is " + response.body.current.temperature + " and chances of getting rain is "
+             + response.body.current.precip + "%")
+    }
+)
+
+
+
+
+
 
 
 //Geocoding 
