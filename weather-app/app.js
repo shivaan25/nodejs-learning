@@ -1,8 +1,14 @@
+const { argv } = require('node:process');
+
+
 
 const geocode = require('../weather-app/utils/geocode')
 const weatherData = require('../weather-app/utils/weatherData')
 
-geocode('Delhi , India' ,(error , data) => {
+
+const input = process.argv[2]
+
+geocode(input ,(error , data) => {
        if(error){
         return console.log(error)
        }
@@ -16,3 +22,5 @@ geocode('Delhi , India' ,(error , data) => {
     console.log(forecastData)
 })
 })
+
+
