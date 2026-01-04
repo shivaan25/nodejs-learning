@@ -8,7 +8,10 @@ const weatherData = require('../weather-app/utils/weatherData')
 
 const input = process.argv[2]
 
-geocode(input ,(error , data) => {
+if(!input){
+    console.log('Please Provide the Address')
+}else{
+    geocode(input ,(error , data) => {
        if(error){
         return console.log(error)
        }
@@ -23,4 +26,6 @@ geocode(input ,(error , data) => {
 })
 })
 
+
+}
 

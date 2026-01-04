@@ -19,11 +19,14 @@ app.get('/help' ,(req,res) => {
 })
 
 app.get('/about' ,(req,res) => {
-    res.send('About Page')
+    res.send('<h1>Current Weather Data of your Location</h1>')
 })
 
 app.get('/weather' ,(req,res) => {
-    res.send('Weather Page')
+    res.send({
+        location:'Panipat',
+        forecast:19
+    })
 })
 
 
