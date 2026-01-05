@@ -1,26 +1,14 @@
+const path=require('path')
+
 const express = require('express')
+
+const publicDirectory = path.join(__dirname,'../public')
 
 const app = express()
 
-app.get('' ,(req,res) =>{
-    res.send('<h1>Weather</h1>')
-
-})
+app.use(express.static(publicDirectory))
 
 
-app.get('/help' ,(req,res) => {
-    res.send([{
-        name:'Shivam',
-        age: 26
-    },{
-        name:'Parv',
-        age:21
-    }])
-})
-
-app.get('/about' ,(req,res) => {
-    res.send('<h1>Current Weather Data of your Location</h1>')
-})
 
 app.get('/weather' ,(req,res) => {
     res.send({
