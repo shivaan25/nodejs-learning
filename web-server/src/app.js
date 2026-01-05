@@ -53,12 +53,6 @@ app.get('/weather' ,(req,res) => {
     })
 })
 
-app.get('/error',(rea,res)=>{
-    res.render('error' ,{
-        
-    })
-})
-
 app.use('/help',(req,res)=>{
     res.render('error',{
         title: 'Help Page not Found',

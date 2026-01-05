@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-        {{>header}}
+        <title>404</title>
+        <link rel="icon" href="/img/weather_icon.png">
+       <link rel="stylesheet" href="./css/styles.css">
     </head>
     <body>
-        <p>{{errorHandler}}</p>
+        <div class="main-content">
+ {{>header}}
+ <p>{{errorHandler}}</p>
+        </div>
+        
         {{>footer}}
     </body>
 </html>
