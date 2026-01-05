@@ -53,6 +53,26 @@ app.get('/weather' ,(req,res) => {
     })
 })
 
+app.get('/error',(rea,res)=>{
+    res.render('error' ,{
+        
+    })
+})
+
+app.use('/help',(req,res)=>{
+    res.render('error',{
+        title: 'Help Page not Found',
+        name:'Shivam Singla',
+        errorHandler:'Help Page Not Found'
+    })
+})
+app.use((req, res) => {
+    res.status(404).render('error',{
+        title:'My 404 page',
+        name:'Shivam Singla',
+        errorHandler:'404 Page Not Found '
+    });
+});
 
 
 app.listen(3000,() =>{
