@@ -52,13 +52,13 @@ app.get('/weather' ,(req,res) => {
             error:'PLease Provide the Address'
         })
     }
-    geocode(req.query.address,(error , data) => {
+    geocode(req.query.address,(error , {latitude,longitude,location} = {}) => {
        if(error){
         return res.send({error})
        }
        
 
-    weatherData(data.latitude ,data.longitude ,(error,forecastData) =>{
+    weatherData(latitude ,longitude ,(error,forecastData) =>{
     if(error){
         return res.send({error})
     }
@@ -66,10 +66,10 @@ app.get('/weather' ,(req,res) => {
 
 res.render('index',{
     coordinates:{
-        latitude:data.latitude,
-        longitude:data.longitude
+        latitude:latitude,
+        longitude:longitude
     } ,
-    location:data.location,
+    location:location,
     forecast:forecastData,
     address:req.query.address
 })

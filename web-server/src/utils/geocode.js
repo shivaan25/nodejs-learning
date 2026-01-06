@@ -16,7 +16,7 @@ const geocode = (address,callback) => {
         if(error){
             callback('Unable to connect to Services!',undefined)
         }else if(response.body.addresses.length === 0) {
-            callback('Address not Found',undefined)
+            callback('Address not Found . Try another Search',undefined)
         }else{
             callback(undefined,{
                 latitude: response.body.addresses[0].latitude,
