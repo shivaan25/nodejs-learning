@@ -1,7 +1,18 @@
 console.log('Client Side javascript is loaded')
 
  
-fetch('http://localhost:3000/weather?address=!')
+
+
+
+const weatherForm = document.querySelector('form')
+const search = document.querySelector('input')
+
+weatherForm.addEventListener('submit' ,(e) =>{
+    e.preventDefault()
+
+    const location = search.value
+
+    fetch('http://localhost:3000/weather?address='+ location)
 .then((res) =>{
     res.json()
     .then((data) =>{
@@ -11,4 +22,7 @@ fetch('http://localhost:3000/weather?address=!')
             console.log('Weather Forecate Data: ' + data.forecast)
         }
     })
+})
+
+
 })

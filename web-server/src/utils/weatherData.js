@@ -14,7 +14,7 @@ const weatherData = (latitude,longitude,callback) =>{
 
     },(error,response) =>{
         if(error){
-            callback('Unable to connect With Weather API')
+            callback('Unable to connect With Weather API',undefined)
         }else if(response.body.success === 'false'){
             callback('Address not Found',undefined)
         }else{
