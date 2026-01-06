@@ -1,7 +1,8 @@
 const path=require('path')
 const express = require('express')
 const hbs = require('hbs')
-
+const geocode = require('./utils/geocode')
+const weatherData = require('./utils/weatherData')
 
 const app = express()
 
@@ -51,12 +52,30 @@ app.get('/weather' ,(req,res) => {
             error:'PLease Provide the Address'
         })
     }
-    res.send({
-        location:'PANIPAT',
-        forecast:19,
-        name:'Shivam Singla',
-        address:req.query.address
-    })
+    geocode(req.query.address,(error , data) => {
+       if(error){
+        return res.send({error})
+       }
+       
+
+    weatherData(data.latitude ,data.longitude ,(error,forecastData) =>{
+    if(error){
+        return res.send({error})
+    }
+
+
+res.render('index',{
+    coordinates:{
+        latitude:data.latitude,
+        longitude:data.longitude
+    } ,
+    location:data.location,
+    forecast:forecastData,
+    address:req.query.address
+})
+ })
+
+})
 })
 
 app.get('/products' , (req,res) =>{
