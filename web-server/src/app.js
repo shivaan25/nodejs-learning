@@ -64,7 +64,7 @@ app.get('/weather' ,(req,res) => {
     }
 
 
-res.render('index',{
+res.send({
     coordinates:{
         latitude:latitude,
         longitude:longitude
