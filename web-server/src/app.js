@@ -46,12 +46,31 @@ app.get('/help',(req,res) =>{
 
 
 app.get('/weather' ,(req,res) => {
+    if(!req.query.address){
+        return res.send({
+            error:'PLease Provide the Address'
+        })
+    }
     res.send({
-        location:'Panipat',
+        location:'PANIPAT',
         forecast:19,
-        name:'Shivam Singla'
+        name:'Shivam Singla',
+        address:req.query.address
     })
 })
+
+app.get('/products' , (req,res) =>{
+    if(!req.query.search){
+         res.send({
+            error:'You must Provide the query search'
+        })
+    }
+    
+    res.send({
+        product:[]
+    })
+})
+
 
 app.use('/help',(req,res)=>{
     res.render('error',{
