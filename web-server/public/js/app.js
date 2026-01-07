@@ -8,6 +8,7 @@ const weatherForm = document.querySelector('form')
 const search = document.querySelector('input')
 const messageOne = document.querySelector('#message-1')
 const messageTwo = document.querySelector('#message-2')
+const messageThree = document.querySelector('#message-3')
 
 // messageOne.textContent = 'From Javascript'
 
@@ -27,7 +28,10 @@ weatherForm.addEventListener('submit' ,(e) =>{
             messageOne.textContent = data.error
             
         }else{
-             messageOne.textContent=data.location
+            messageThree.textContent= data.location
+             messageOne.textContent = `(${data.coordinates.latitude}, ${data.coordinates.longitude})`
+
+
                 messageTwo.textContent= data.forecast
             
         }
