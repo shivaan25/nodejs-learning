@@ -6,7 +6,7 @@ const weatherData = (latitude,longitude,callback) =>{
     request({
     url: weather_url,
     qs:{
-        access_key:'09a3e384cd5aff612f6efd839382b7c3',
+        access_key:'5768fa86c78b9402a4f5ff14f1a2cf9a',
         query:`${latitude},${longitude}`,
         units:''
     },
