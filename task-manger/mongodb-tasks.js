@@ -26,8 +26,11 @@ async function run() {
     const insertManyEntries = await database.collection('tasks').insertMany(tasks)
 
     console.log('Insertion Completed !!')
+    const findEntries = await database.collection('tasks').find({}).toArray()
+        console.log(findEntries)
 }
 catch(e){
     console.log('Error: ', e.message )
 }
 }
+run()
