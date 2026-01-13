@@ -9,31 +9,53 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
-app.get("/users", (req, res) => {
+app.get("/user", (req, res) => {
   User.find({})
     .then((users) => {
       res.send(users);
+    })
+    .catch((e) => {
+      res.status(500).send();
+    });
+});
+
+app.get("/user/:id", (req, res) => {
+  const _id = req.params.id;
+
+  User.findById(_id)
+    .then((user) => {
+      if (!user) {
+        return res.status(404).send();
+      }
+
+      res.send(user);
+    })
+    .catch((e) => {
+      res.status(500).send();
+    });
+});
+
+app.get("/task", (req, res) => {
+  Tasks.find({})
+    .then((tasks) => {
+      res.send(tasks);
+    })
+    .catch((e) => {
+      res.status(500).send();
+    });
+});
+
+app.get("/task/:id", (req, res) => {
+  const _id = req.params.id;
+  Tasks.findById({ _id })
+    .then((task) => {
+        res.send(task)
     })
     .catch((e) => {
         res.status(500).send()
     });
 });
 
-
-app.get('/users/:id',(req,res) => {
-    const _id = req.params.id
-
-
-    User.findById(_id).then((user) =>{
-        if(!user){
-            return res.status(404).send()
-        }
-
-        res.send(user)
-    }).catch((e)=>{
-        res.status(500).send()
-    })
-})
 app.post("/task", (req, res) => {
   const task = new Tasks(req.body);
 
@@ -47,7 +69,7 @@ app.post("/task", (req, res) => {
     });
 });
 
-app.post("/users", (req, res) => {
+app.post("/user", (req, res) => {
   const user = new User(req.body);
 
   user
