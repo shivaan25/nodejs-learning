@@ -9,77 +9,69 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
-app.get("/user", (req, res) => {
-  User.find({})
-    .then((users) => {
-      res.send(users);
-    })
-    .catch((e) => {
-      res.status(500).send();
-    });
+
+app.get("/user", async (req, res) => {
+  try {
+    const users = await User.find({});
+    res.send(users);
+  } catch (e) {
+    res.status(500).send();
+  }
 });
 
-app.get("/user/:id", (req, res) => {
+app.get("/user/:id", async (req, res) => {
   const _id = req.params.id;
-
-  User.findById(_id)
-    .then((user) => {
+  try {
+    const user = await User.findById(_id).then((user) => {
       if (!user) {
         return res.status(404).send();
       }
 
       res.send(user);
-    })
-    .catch((e) => {
-      res.status(500).send();
     });
+  } catch (e) {
+    res.status(500).send();
+  }
 });
 
-app.get("/task", (req, res) => {
-  Tasks.find({})
-    .then((tasks) => {
-      res.send(tasks);
-    })
-    .catch((e) => {
-      res.status(500).send();
-    });
+app.get("/task", async (req, res) => {
+  try {
+    const tasks = await Tasks.find({});
+
+    res.send(tasks);
+  } catch (e) {
+    res.status(500).send();
+  }
 });
 
-app.get("/task/:id", (req, res) => {
+app.get("/task/:id", async (req, res) => {
   const _id = req.params.id;
-  Tasks.findById({ _id })
-    .then((task) => {
-        res.send(task)
-    })
-    .catch((e) => {
-        res.status(500).send()
-    });
+  try {
+    const task = await Tasks.findById({ _id });
+    res.send(task);
+  } catch (e) {
+    res.status(500).send();
+  }
 });
 
-app.post("/task", (req, res) => {
+app.post("/task", async (req, res) => {
   const task = new Tasks(req.body);
-
-  task
-    .save()
-    .then(() => {
-      res.status(201).send(task);
-    })
-    .catch((e) => {
-      res.status(400).send(task);
-    });
+  try {
+    await task.save();
+    res.send(task);
+  } catch (e) {
+    res.status(400).send();
+  }
 });
 
-app.post("/user", (req, res) => {
+app.post("/user", async (req, res) => {
   const user = new User(req.body);
-
-  user
-    .save()
-    .then(() => {
-      res.send(user);
-    })
-    .catch((e) => {
-      res.status(400).send(e.message);
-    });
+  try {
+    await user.save();
+    res.send(user);
+  } catch (e) {
+    res.status(400).send();
+  }
 });
 
 app.listen(port, () => {
