@@ -1,0 +1,210 @@
+{
+  "info": {
+    "_postman_id": "0e9b546f-cf60-4d0b-a4ce-55e0c01182a3",
+    "name": "task-app",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Read All Users",
+      "id": "a036d721-21ad-4670-87c6-0243ce420e1f",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/user",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "user"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Read  User by ID",
+      "id": "a4710a66-c355-4376-a796-ee367d4a3749",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/user/696237a5d4e5c2fe0ed589dc",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "user",
+            "696237a5d4e5c2fe0ed589dc"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Post Data For user",
+      "id": "46c8d898-86a1-4057-93d5-ac2752b636ba",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n        \n        \"name\": \"Shivaan 2\",\n        \"email\": \"shivamsingla2@hmail.com\",\n        \"password\":\"Shivam@12211\"\n       \n        \n    }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/user",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "user"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Read All Tasks",
+      "id": "b303de6a-5fb8-4e7d-a689-d26639b40ad3",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Read Task By Id",
+      "id": "bd432895-64bf-4a5e-b2e9-71a365beac66",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/task/6964b2374689703c7ce0580a",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "task",
+            "6964b2374689703c7ce0580a"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Post Data For Task",
+      "id": "1541098c-3c10-44e8-8e6c-6cea35c16d10",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n      \n        \"Body\": \"Today Task Completed and Section 11 completed\",\n        \"completed\": true\n        \n    }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/task",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "task"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Data For User",
+      "id": "04bcb949-7858-4661-b35d-c89808846524",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n       \n        \"name\": \"Rohan\",\n        \"email\": \"singlshina@gmail.com\"\n        \n    }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/user/6964addc8ee07a64233e6ff9",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "user",
+            "6964addc8ee07a64233e6ff9"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Data For Tasks",
+      "id": "00f98ada-78d5-4a15-8c39-3aed579f3c62",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n       \n        \n        \"completed\": false\n        \n    }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/task/696751175e8ec6b081a7c543",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "task",
+            "696751175e8ec6b081a7c543"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
