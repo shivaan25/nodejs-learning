@@ -1,15 +1,14 @@
-const doWorkPromises = new Promise((resolve,reject) => 
-{
-    setTimeout(() => {
-       
-       reject('Failure')
-      // resolve([1,2,3,4])
-    },2000)
-})
+require("../task-manger/src/db/mongoose");
+const User = require("../task-manger/src/db/models/user");
 
-doWorkPromises.then((result) => {
-    console.log('Success!' ,result)
-}).catch((error) => {
-    console.log('Error' ,error)
-})
-
+User.findByIdAndUpdate("696237a5d4e5c2fe0ed589dc", { name: "Shivam" })
+  .then((user) => {
+    console.log(user);
+    return User.countDocuments({ name: "Shivam" });
+  })
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((e) => {
+    console.log(e)
+  });
