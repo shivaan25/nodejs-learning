@@ -46,6 +46,15 @@ app.post("/user", async (req, res) => {
 });
 
 app.patch("/user/:id", async (req, res) => {
+  const updates = Object.keys(req.body);
+  const allowedUpdates = ["name", "email"];
+  const isValidUpdate = updates.every((update) =>
+    allowedUpdates.includes(update),
+  );
+  if (!isValidUpdate) {
+    return res.send("invalid update!!");
+  }
+
   try {
     const user = await User.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -92,8 +101,17 @@ app.post("/task", async (req, res) => {
 });
 
 app.patch("/task/:id", async (req, res) => {
+  const updates = Object.keys(req.body);
+  const allowedUpdates = ["completed"];
+  const isValidUpdate = updates.every((update) =>
+    allowedUpdates.includes(update),
+  );
+  if (!isValidUpdate) {
+    return res.send("invalid update!!");
+  }
+
   try {
-    const task = await Tasks.findByIdAndUpdate(req.params.id, {
+    const task = await Tasks.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
     });
@@ -102,7 +120,7 @@ app.patch("/task/:id", async (req, res) => {
     }
     return res.send(task);
   } catch (e) {
-    res.status(400).send();
+    res.status(400).send(e);
   }
 });
 
