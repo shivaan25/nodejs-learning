@@ -69,6 +69,18 @@ app.patch("/user/:id", async (req, res) => {
   }
 });
 
+app.delete("/user/:id", async (req, res) => {
+  try {
+    const deleteUser = await User.findByIdAndDelete(req.params.id);
+    if (!deleteUser) {
+      return res.send("User not Found");
+    }
+    res.send(deleteUser);
+  } catch (e) {
+    res.send(e);
+  }
+});
+
 //task endpoints
 app.get("/task", async (req, res) => {
   try {
@@ -121,6 +133,18 @@ app.patch("/task/:id", async (req, res) => {
     return res.send(task);
   } catch (e) {
     res.status(400).send(e);
+  }
+});
+
+app.delete("/task/:id", async (req, res) => {
+  try {
+    const deleteTask = await Tasks.findByIdAndDelete(req.params.id);
+    if (!deleteTask) {
+      return res.send("Task Not Found");
+    }
+    return res.send(deleteTask);
+  } catch (e) {
+    res.send(e);
   }
 });
 
