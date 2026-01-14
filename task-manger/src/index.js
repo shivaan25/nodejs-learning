@@ -10,6 +10,7 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
+//user endpoints
 app.get("/user", async (req, res) => {
   try {
     const users = await User.find({});
@@ -34,6 +35,32 @@ app.get("/user/:id", async (req, res) => {
   }
 });
 
+app.post("/user", async (req, res) => {
+  const user = new User(req.body);
+  try {
+    await user.save();
+    res.send(user);
+  } catch (e) {
+    res.status(400).send();
+  }
+});
+
+app.patch("/user/:id", async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    if (!user) {
+      return res.status(400).send();
+    }
+    return res.send(user);
+  } catch (e) {
+    res.send(e);
+  }
+});
+
+//task endpoints
 app.get("/task", async (req, res) => {
   try {
     const tasks = await Tasks.find({});
@@ -64,11 +91,16 @@ app.post("/task", async (req, res) => {
   }
 });
 
-app.post("/user", async (req, res) => {
-  const user = new User(req.body);
+app.patch("/task/:id", async (req, res) => {
   try {
-    await user.save();
-    res.send(user);
+    const task = await Tasks.findByIdAndUpdate(req.params.id, {
+      new: true,
+      runValidators: true,
+    });
+    if (!task) {
+      return res.status(500).send();
+    }
+    return res.send(task);
   } catch (e) {
     res.status(400).send();
   }
