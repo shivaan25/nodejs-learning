@@ -31,15 +31,16 @@ router.post("/user", async (req, res) => {
   const user = new User(req.body);
   try {
     await user.save();
-    res.send(user);
+    return res.send(user);
   } catch (e) {
     res.status(400).send();
   }
 });
 
+
 router.patch("/user/:id", async (req, res) => {
   const updates = Object.keys(req.body);
-  const allowedUpdates = ["name", "email"];
+  const allowedUpdates = ["name", "email", "password"];
   const isValidUpdate = updates.every((update) =>
     allowedUpdates.includes(update),
   );
@@ -48,14 +49,17 @@ router.patch("/user/:id", async (req, res) => {
   }
 
   try {
-    const user = await User.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
+    const user = await User.findById(req.params.id);
+    updates.forEach((update) => {
+      user[update] = req.body[update];
     });
-    if (!user) {
-      return res.status(400).send();
-    }
-    return res.send(user);
+    await user.save();
+    // const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+    //   new: true,
+    //   runValidators: true,
+    // });
+
+    res.send(user);
   } catch (e) {
     res.send(e);
   }

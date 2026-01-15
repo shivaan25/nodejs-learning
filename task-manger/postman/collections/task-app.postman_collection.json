@@ -54,7 +54,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n        \n        \"name\": \"Shivaan 2\",\n        \"email\": \"shivamsingla2@hmail.com\",\n        \"password\":\"Shivam@12211\"\n       \n        \n    }",
+          "raw": "{\n    \"name\": \"Shivaan\",\n    \"email\": \"shivaan@gmail.com\",\n    \"password\": \"Shivaan@34567890\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -80,7 +80,10 @@
       "id": "b303de6a-5fb8-4e7d-a689-d26639b40ad3",
       "request": {
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": ""
+        }
       },
       "response": []
     },
@@ -154,7 +157,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n       \n        \"name\": \"Rohan\",\n        \"email\": \"singlshina@gmail.com\"\n        \n    }",
+          "raw": "{\n       \n        \"name\": \"Rohan\",\n        \"email\": \"roohan@gmail.com\"\n        \n    }",
           "options": {
             "raw": {
               "language": "json"

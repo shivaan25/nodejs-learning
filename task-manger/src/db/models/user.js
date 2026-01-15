@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+const bcrypt = require("bcrypt");
 
-const User = mongoose.model("User", {
+const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -12,6 +13,7 @@ const User = mongoose.model("User", {
     required: true,
     trim: true,
     lowercase: true,
+    unique: true,
     validate(value) {
       if (!validator.isEmail(value)) {
         throw new Error("Email is not valid");
@@ -21,27 +23,30 @@ const User = mongoose.model("User", {
   password: {
     type: String,
     required: true,
-    minLength: 6,
+    minlength: 6,
     trim: true,
     validate(value) {
       if (value.toLowerCase().includes("password")) {
-        throw new Error('Pssword Should not contain string "password"');
+        throw new Error('Password should not contain "password"');
       }
     },
   },
   title: {
     type: String,
+    trim: true,
     validate(value) {
-      if (value.length < 5) {
-        throw new Error("Title Should be less then 5 characters");
+      if (value && value.length < 5) {
+        throw new Error("Title must be at least 5 characters");
       }
     },
   },
 });
 
+userSchema.pre("save", async function () {
+  if (this.isModified("password")) {
+    this.password = await bcrypt.hash(this.password, 8);
+  }
+});
 
-
-
-
-/* trunk-ignore(prettier/SyntaxError) */
-module.exports = User
+const User = mongoose.model("User", userSchema);
+module.exports = User;
