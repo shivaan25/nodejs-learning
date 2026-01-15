@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
-
-const Tasks = mongoose.model("Tasks", {
+const taskSchema = mongoose.Schema({
   Body: {
     type: String,
     required: true,
@@ -11,6 +10,20 @@ const Tasks = mongoose.model("Tasks", {
     type: Boolean,
     default: false,
   },
-});
+  completedAt:{
+    type:Date,
+    default:null
+  }
+})
+taskSchema.pre("save" , async function () {
+    const task =this
+    if(task.isModified("completed") && task.completed === true){
+      task.completedAt = new Date()
+    }
+    if(task.isModified("completed") && task.completed === false){
+      task.completedAt = null
+    }
+})
+const Tasks = mongoose.model("Tasks", taskSchema);
 
 module.exports= Tasks
