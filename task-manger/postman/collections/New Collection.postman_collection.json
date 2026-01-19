@@ -1,0 +1,58 @@
+{
+  "info": {
+    "_postman_id": "e4f1992d-d79e-447b-bf6a-8a6fb1199f92",
+    "name": "School Management System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Post New School",
+      "id": "290e2ff6-b30c-472e-8aa6-4f6ed5f17af2",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text",
+            "uuid": "2729fc8c-7b32-4797-a203-6b98a8311acd"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \n  \"name\": \"ABC Public School\"\n\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3002/api/school",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3002",
+          "path": [
+            "api",
+            "school"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Schools",
+      "id": "e28179fd-801a-465c-b704-d88a0a1bc73c",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    }
+  ]
+}

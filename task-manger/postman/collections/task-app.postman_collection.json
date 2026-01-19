@@ -208,6 +208,36 @@
         }
       },
       "response": []
+    },
+    {
+      "name": "login user",
+      "id": "119956f8-e3f1-431e-90c6-c030d7564149",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"shivaan@gmail.com\",\n    \"password\": \"Shivaan@34567890\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/user/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "user",
+            "login"
+          ]
+        }
+      },
+      "response": []
     }
   ]
 }

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = new express.Router();
 const User = require("../db/models/user");
+const bcrypt = require("bcrypt");
 
 //user endpoints
 router.get("/user", async (req, res) => {
@@ -11,6 +12,38 @@ router.get("/user", async (req, res) => {
     res.status(500).send();
   }
 });
+
+router.post("/user/login", async (req, res) => {
+  try {
+      const user = await User.loginCredentials(req.body.email,req.body.password)
+      res.send(user)
+  } catch (e) {
+    res.send(e);
+  }
+});
+
+// router.post("/user/login", async (req, res) => {
+//   try {
+//     const user = await User.loginCredentials(
+//       req.body.email,
+//       req.body.password
+//     );
+
+//     res.status(200).json({
+//       message: "Login successful",
+//       user: {
+//         id: user._id,
+//         name: user.name,
+//         email: user.email
+//       }
+//     });
+
+//   } catch (error) {
+//     res.status(401).json({
+//       message: "Invalid credentials"
+//     });
+//   }
+// });
 
 router.get("/user/:id", async (req, res) => {
   const _id = req.params.id;
@@ -33,10 +66,9 @@ router.post("/user", async (req, res) => {
     await user.save();
     return res.send(user);
   } catch (e) {
-    res.status(400).send();
+    res.status(400).send(e);
   }
 });
-
 
 router.patch("/user/:id", async (req, res) => {
   const updates = Object.keys(req.body);
@@ -54,10 +86,6 @@ router.patch("/user/:id", async (req, res) => {
       user[update] = req.body[update];
     });
     await user.save();
-    // const user = await User.findByIdAndUpdate(req.params.id, req.body, {
-    //   new: true,
-    //   runValidators: true,
-    // });
 
     res.send(user);
   } catch (e) {

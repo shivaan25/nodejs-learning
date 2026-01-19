@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
+    unique: true,
     required: true,
     trim: true,
     lowercase: true,
@@ -41,6 +42,34 @@ const userSchema = new mongoose.Schema({
     },
   },
 });
+userSchema.statics.loginCredentials = async function (email, password) {
+  const verifiedUser = await this.findOne({ email });
+  if (!verifiedUser) {
+    throw new Error("Invalid Email");
+  }
+  const verifyPassword = await bcrypt.compare(
+    password,
+    verifiedUser.password,
+  );
+  if (!verifyPassword) {
+    throw new Error("Incorrect Password");
+  }
+  return verifiedUser
+};
+
+// userSchema.statics.loginCredentials = async function (email, password) {
+//   const user = await this.findOne({ email });
+//   if (!user) {
+//     throw new Error("Invalid credentials");
+//   }
+
+//   const isMatch = await bcrypt.compare(password, user.password);
+//   if (!isMatch) {
+//     throw new Error("Invalid credentials");
+//   }
+
+//   return user;
+// };
 
 userSchema.pre("save", async function () {
   if (this.isModified("password")) {
