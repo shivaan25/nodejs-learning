@@ -54,7 +54,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"name\": \"Shivaan\",\n    \"email\": \"shivaan@gmail.com\",\n    \"password\": \"Shivaan@34567890\"\n}",
+          "raw": "{\n    \"name\": \"Rohan\",\n    \"email\": \"rohan@gmail.com\",\n    \"password\": \"rohaaAan@34567890\"\n}",
           "options": {
             "raw": {
               "language": "json"
