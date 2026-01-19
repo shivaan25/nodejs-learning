@@ -18,32 +18,9 @@ router.post("/user/login", async (req, res) => {
       const user = await User.loginCredentials(req.body.email,req.body.password)
       res.send(user)
   } catch (e) {
-    res.send(e);
+    res.status(400).send();
   }
 });
-
-// router.post("/user/login", async (req, res) => {
-//   try {
-//     const user = await User.loginCredentials(
-//       req.body.email,
-//       req.body.password
-//     );
-
-//     res.status(200).json({
-//       message: "Login successful",
-//       user: {
-//         id: user._id,
-//         name: user.name,
-//         email: user.email
-//       }
-//     });
-
-//   } catch (error) {
-//     res.status(401).json({
-//       message: "Invalid credentials"
-//     });
-//   }
-// });
 
 router.get("/user/:id", async (req, res) => {
   const _id = req.params.id;

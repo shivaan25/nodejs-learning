@@ -57,19 +57,6 @@ userSchema.statics.loginCredentials = async function (email, password) {
   return verifiedUser
 };
 
-// userSchema.statics.loginCredentials = async function (email, password) {
-//   const user = await this.findOne({ email });
-//   if (!user) {
-//     throw new Error("Invalid credentials");
-//   }
-
-//   const isMatch = await bcrypt.compare(password, user.password);
-//   if (!isMatch) {
-//     throw new Error("Invalid credentials");
-//   }
-
-//   return user;
-// };
 
 userSchema.pre("save", async function () {
   if (this.isModified("password")) {
