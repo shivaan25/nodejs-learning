@@ -9,6 +9,16 @@
       "name": "Read All Users",
       "id": "a036d721-21ad-4670-87c6-0243ce420e1f",
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTcwOTYwNTA5Mzc5MDkyOTlhNTc5NWMiLCJpYXQiOjE3Njg5ODYxMTd9.5qHs7uCDtei8sY5WBkB9SRU4QMDk-zSO_lJRU8S6CXI",
+              "type": "string"
+            }
+          ]
+        },
         "method": "GET",
         "header": [
           {
@@ -246,6 +256,49 @@
         }
       },
       "response": []
+    },
+    {
+      "name": "logout user",
+      "id": "ec4ec96e-0655-4b5b-83eb-a3e23509afda",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/user/logout",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "user",
+            "logout"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "logoutALL",
+      "id": "c35908e4-1e36-416e-9916-5ff04312b697",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
     }
-  ]
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "",
+        "type": "string"
+      }
+    ]
+  }
 }
