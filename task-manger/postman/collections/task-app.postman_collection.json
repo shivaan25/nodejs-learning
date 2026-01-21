@@ -10,16 +10,24 @@
       "id": "a036d721-21ad-4670-87c6-0243ce420e1f",
       "request": {
         "method": "GET",
-        "header": [],
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTcwOTYwNTA5Mzc5MDkyOTlhNTc5NWMiLCJpYXQiOjE3Njg5ODYxMTd9.5qHs7uCDtei8sY5WBkB9SRU4QMDk-zSO_lJRU8S6CXI",
+            "type": "text",
+            "uuid": "0b91f071-504e-40e4-a954-527eec76194f"
+          }
+        ],
         "url": {
-          "raw": "http://localhost:3000/user",
+          "raw": "http://localhost:3000/user/me",
           "protocol": "http",
           "host": [
             "localhost"
           ],
           "port": "3000",
           "path": [
-            "user"
+            "user",
+            "me"
           ]
         }
       },

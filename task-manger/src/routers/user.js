@@ -2,15 +2,11 @@ const express = require("express");
 const router = new express.Router();
 const User = require("../db/models/user");
 const bcrypt = require("bcrypt");
+const auth =require('../middleware/auth')
 
 //user endpoints
-router.get("/user", async (req, res) => {
-  try {
-    const users = await User.find({});
-    res.send(users);
-  } catch (e) {
-    res.status(500).send();
-  }
+router.get("/user/me",auth, async (req, res) => {
+  res.send(req.user)
 });
 
 router.post("/user/login", async (req, res) => {
