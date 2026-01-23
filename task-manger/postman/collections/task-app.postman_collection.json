@@ -6,73 +6,44 @@
   },
   "item": [
     {
-      "name": "Read All Users",
-      "id": "a036d721-21ad-4670-87c6-0243ce420e1f",
-      "request": {
-        "auth": {
-          "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTcwOTYwNTA5Mzc5MDkyOTlhNTc5NWMiLCJpYXQiOjE3Njg5ODYxMTd9.5qHs7uCDtei8sY5WBkB9SRU4QMDk-zSO_lJRU8S6CXI",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTcwOTYwNTA5Mzc5MDkyOTlhNTc5NWMiLCJpYXQiOjE3Njg5ODYxMTd9.5qHs7uCDtei8sY5WBkB9SRU4QMDk-zSO_lJRU8S6CXI",
-            "type": "text",
-            "uuid": "0b91f071-504e-40e4-a954-527eec76194f"
+      "name": "Register user",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "c08b9256-3b5b-4e74-b655-8252c15e5b50",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
           }
-        ],
-        "url": {
-          "raw": "http://localhost:3000/user/me",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "user",
-            "me"
-          ]
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "91863eb4-e702-4266-bd56-73d3a9f64186",
+            "exec": [
+              "const json = pm.response.json();",
+              "",
+              "if (json.token) {",
+              "  pm.environment.set(\"token\", json.token);",
+              "}"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
         }
-      },
-      "response": []
-    },
-    {
-      "name": "Read  User by ID",
-      "id": "a4710a66-c355-4376-a796-ee367d4a3749",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:3000/user/696237a5d4e5c2fe0ed589dc",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "user",
-            "696237a5d4e5c2fe0ed589dc"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Post Data For user",
+      ],
       "id": "46c8d898-86a1-4057-93d5-ac2752b636ba",
       "request": {
         "method": "POST",
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"name\": \"Rohan\",\n    \"email\": \"rohan@gmail.com\",\n    \"password\": \"rohaaAan@34567890\"\n}",
+          "raw": "{\n    \"name\": \"Rohan\",\n    \"email\": \"singka@gmail.com\",\n    \"password\": \"rohaaAan@34567890\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -94,13 +65,209 @@
       "response": []
     },
     {
+      "name": "Login user",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "53af8d64-2537-4923-a5a9-bfa4545e16d9",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "354cf072-dfed-435c-bb4e-dcbc8985f9a7",
+            "exec": [
+              "const json = pm.response.json();",
+              "",
+              "if (json.token) {",
+              "  pm.environment.set(\"token\", json.token);",
+              "}"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "id": "119956f8-e3f1-431e-90c6-c030d7564149",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n   \"email\": \"singka@gmail.com\",\n    \"password\": \"rohaaAan@34567890\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/user/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "user",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Read  User",
+      "id": "a4710a66-c355-4376-a796-ee367d4a3749",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/user/me",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "user",
+            "me"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete User",
+      "id": "5dc3db13-0a05-4448-b7bd-b1fdc3ce667c",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/user/me",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "user",
+            "me"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Data For User",
+      "id": "04bcb949-7858-4661-b35d-c89808846524",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \n    \"password\": \"singla@234\"\n    \n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/user/me",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "user",
+            "me"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "logoutALL",
+      "id": "c35908e4-1e36-416e-9916-5ff04312b697",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/logout/All",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "logout",
+            "All"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Post Data For Task",
+      "id": "1541098c-3c10-44e8-8e6c-6cea35c16d10",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n      \n        \"Body\": \"Today i have completed the one more section\",\n        \"completed\": true\n        \n    }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/task",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "task"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
       "name": "Read All Tasks",
       "id": "b303de6a-5fb8-4e7d-a689-d26639b40ad3",
       "request": {
         "method": "GET",
         "header": [],
         "url": {
-          "raw": ""
+          "raw": "http://localhost:3000/task",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "task"
+          ]
         }
       },
       "response": []
@@ -124,7 +291,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:3000/task/6964b2374689703c7ce0580a",
+          "raw": "http://localhost:3000/task/69720651c82ab4945525c900",
           "protocol": "http",
           "host": [
             "localhost"
@@ -132,66 +299,7 @@
           "port": "3000",
           "path": [
             "task",
-            "6964b2374689703c7ce0580a"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Post Data For Task",
-      "id": "1541098c-3c10-44e8-8e6c-6cea35c16d10",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n      \n        \"Body\": \"Today Task Completed and Section 11 completed\",\n        \"completed\": true\n        \n    }",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:3000/task",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "task"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Update Data For User",
-      "id": "04bcb949-7858-4661-b35d-c89808846524",
-      "request": {
-        "method": "PATCH",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n       \n        \"name\": \"Rohan\",\n        \"email\": \"roohan@gmail.com\"\n        \n    }",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:3000/user/6964addc8ee07a64233e6ff9",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "user",
-            "6964addc8ee07a64233e6ff9"
+            "69720651c82ab4945525c900"
           ]
         }
       },
@@ -205,7 +313,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n       \n        \n        \"completed\": true\n        \n    }",
+          "raw": "{\n       \n        \n        \"completed\":true\n        \n    }",
           "options": {
             "raw": {
               "language": "json"
@@ -213,7 +321,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:3000/task/696751175e8ec6b081a7c543",
+          "raw": "http://localhost:3000/task/6971ffd2f1cb4d97ce72fac9",
           "protocol": "http",
           "host": [
             "localhost"
@@ -221,37 +329,7 @@
           "port": "3000",
           "path": [
             "task",
-            "696751175e8ec6b081a7c543"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "login user",
-      "id": "119956f8-e3f1-431e-90c6-c030d7564149",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n    \"email\": \"shivaan@gmail.com\",\n    \"password\": \"Shivaan@34567890\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:3000/user/login",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "user",
-            "login"
+            "6971ffd2f1cb4d97ce72fac9"
           ]
         }
       },
@@ -277,18 +355,6 @@
         }
       },
       "response": []
-    },
-    {
-      "name": "logoutALL",
-      "id": "c35908e4-1e36-416e-9916-5ff04312b697",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": ""
-        }
-      },
-      "response": []
     }
   ],
   "auth": {
@@ -296,7 +362,7 @@
     "bearer": [
       {
         "key": "token",
-        "value": "",
+        "value": "{{token}}",
         "type": "string"
       }
     ]
